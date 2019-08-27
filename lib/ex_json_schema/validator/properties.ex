@@ -69,7 +69,9 @@ defmodule ExJsonSchema.Validator.Properties do
   end
 
   defp unvalidated_properties(properties, validated_properties) do
-    unvalidated = MapSet.difference(keys_as_set(properties), keys_as_set(validated_properties))
+    unvalidated =
+      MapSet.difference(keys_as_set(properties), keys_as_set(validated_properties))
+      |> MapSet.to_list()
     Map.take(properties, unvalidated)
   end
 
